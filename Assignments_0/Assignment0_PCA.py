@@ -21,3 +21,4 @@ plt.ylabel('Principal Component 2')
 plt.title('PCA Visualization (2 Principal Components)')
 plt.show()
 plt.savefig('my_plot_2.png')
+
