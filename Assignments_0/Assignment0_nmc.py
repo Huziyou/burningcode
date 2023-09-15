@@ -1,7 +1,8 @@
 import numpy as np
 from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 import pandas as pd
-
+import umap
 
 # 使用Pandas加载CSV文件
 data_train_in = pd.read_csv('/home/huziyou/pythonFile/IDL/Assignments_0/train_in - Copy.csv', header=None)
@@ -14,11 +15,56 @@ point_cloud_train_in = data_train_in.to_numpy()  # 转换train_in数据
 point_cloud_test_in = data_test_in.to_numpy()  # 转换test_in数据
 
 # 创建PCA模型，指定降维后的维度
-pca = PCA(n_components=255)  # 指定降维到255维
+# pca = PCA(n_components=50)  # 指定降维到50维
+
+# # 创建UMAP对象，设置目标维度为10（或您需要的维度）
+# umap_model = umap.UMAP(n_components=80)
+
+# tsne_model = TSNE(n_components=3)
 
 # 拟合PCA模型并进行降维
-reduced_point_cloud_train_in = pca.fit_transform(point_cloud_train_in)
-reduced_point_cloud_test_in = pca.fit_transform(point_cloud_test_in)
+# reduced_point_cloud_train_in = pca.fit_transform(point_cloud_train_in)
+# reduced_point_cloud_test_in = pca.fit_transform(point_cloud_test_in)
+
+# reduced_point_cloud_train_in = umap_model.fit_transform(data_train_in)
+# reduced_point_cloud_test_in = umap_model.fit_transform(data_test_in)
+
+# reduced_point_cloud_train_in =  tsne_model.fit_transform(data_train_in)
+# reduced_point_cloud_test_in = tsne_model.fit_transform(data_test_in)
+
+
+
+def pca(X, n_components=None):
+    # 计算均值
+    mean = np.mean(X, axis=0)
+
+    # 数据中心化
+    centered_data = X - mean
+
+    # 计算协方差矩阵
+    covariance_matrix = np.cov(centered_data, rowvar=False)
+
+    # 特征值分解
+    eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)
+
+    # 对特征向量按特征值降序排序
+    sorted_indices = np.argsort(eigenvalues)[::-1]
+    eigenvectors = eigenvectors[:, sorted_indices]
+    eigenvalues = eigenvalues[sorted_indices]
+
+    # 选择要保留的主成分数量
+    if n_components is not None:
+        selected_eigenvectors = eigenvectors[:, :n_components]
+    else:
+        selected_eigenvectors = eigenvectors
+
+    # 将数据投影到选定的主成分上
+    reduced_data = np.dot(centered_data, selected_eigenvectors)
+
+    return reduced_data
+
+reduced_point_cloud_train_in = pca(point_cloud_train_in, n_components=50)
+reduced_point_cloud_test_in = pca(point_cloud_test_in, n_components=50)
 
 # 选择不降维数据
 # reduced_point_cloud_train_in = data_train_in
@@ -50,6 +96,10 @@ unique_labels = labels.unique()
 class_data = {}
 class_centers = {}
 
+"""
+完成了训练步骤
+因为处理完了所有的训练数据
+"""
 # 遍历每个唯一的标签值
 for label in unique_labels:
     # 选择属于当前标签的数据
@@ -118,10 +168,4 @@ def nearest_mean_classifier(train_data, test_data, class_centers, true_labels_se
 # 调用分类器函数
 
 predictions, class_accuracies = nearest_mean_classifier(reduced_data_train_in, reduced_data_test_in, class_centers, data_test_out)
-
-
-
-
-
-
 
