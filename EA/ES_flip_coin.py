@@ -41,13 +41,11 @@ def studentnumber1_studentnumber2_ES(problem):
     # `problem.state.evaluations` counts the number of function evaluation automatically,
     # which is incremented by 1 whenever you call `problem(x)`.
     # You could also maintain a counter of function evaluations if you prefer.
-    while problem.state.evaluations < budget:
+    while problem.state.evaluations + pop_size <= budget:
         # please implement the mutation, crossover, selection here
         # .....
         # this is how you evaluate one solution `x`
         # f = problem(x)
-        if problem.state.evaluations + num_offspring > budget:
-            break  # 如果超出预算，结束循环
 
         # # 重组步骤
         # offspring = np.array([uniform_crossover(population[np.random.randint(pop_size)],
