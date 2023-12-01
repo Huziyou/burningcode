@@ -41,12 +41,13 @@ def studentnumber1_studentnumber2_ES(problem):
     # `problem.state.evaluations` counts the number of function evaluation automatically,
     # which is incremented by 1 whenever you call `problem(x)`.
     # You could also maintain a counter of function evaluations if you prefer.
-    while problem.state.evaluations + pop_size <= budget:
+    while problem.state.evaluations < budget:
         # please implement the mutation, crossover, selection here
         # .....
         # this is how you evaluate one solution `x`
         # f = problem(x)
-
+        if (budget - problem.state.evaluations) < pop_size:
+            break
         # # 重组步骤
         # offspring = np.array([uniform_crossover(population[np.random.randint(pop_size)],
         #                                         population[np.random.randint(pop_size)]) 
@@ -79,7 +80,7 @@ def create_problem(fid: int):
     # `root` indicates where the output files are stored.
     # `folder_name` is the name of the folder containing all output. You should compress the folder 'run' and upload it to IOHanalyzer.
     l = logger.Analyzer(
-        root="data_bit_flip_1",  # the working directory in which a folder named `folder_name` (the next argument) will be created to store data
+        root="data_bit_flip_2",  # the working directory in which a folder named `folder_name` (the next argument) will be created to store data
         folder_name="run",  # the folder name to which the raw performance data will be stored
         algorithm_name="evolution_strategies",  # name of your algorithm
         algorithm_info="Practical assignment of the EA course",
