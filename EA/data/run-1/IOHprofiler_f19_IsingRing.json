@@ -4,7 +4,7 @@
 	"function_id": 19, 
 	"function_name": "IsingRing", 
 	"maximization": true, 
-	"algorithm": {"name": "genetic_algorithm", "info": "Practical assignment of the EA course"},
+	"algorithm": {"name": "evolution_strategies", "info": "Practical assignment of the EA course"},
 	"attributes": ["evaluations", "raw_y"],
 	"scenarios": [
 		{"dimension": 50,
