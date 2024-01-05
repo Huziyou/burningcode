@@ -1,0 +1,123 @@
+Average Training Loss: 0.8251460281477312
+Average Training Loss: 0.5806323785629195
+Average Training Loss: 0.33343046715823116
+Average Training Loss: 0.17660480628059086
+Average Training Loss: 0.10933846920951998
+Average Training Loss: 0.08526752213630268
+Average Training Loss: 0.06396943919946838
+Average Training Loss: 0.05048504561136352
+Average Training Loss: 0.04968982680376533
+Average Training Loss: 0.06395232254573924
+Validation Loss: 1.7392170271737788
+Test Loss: 1.7134489030838014
+Test Accuracy: 0.6075
+              precision    recall  f1-score   support
+
+    negative       0.54      0.31      0.40       325
+     neutral       0.48      0.52      0.50       681
+    positive       0.70      0.76      0.73       994
+
+    accuracy                           0.61      2000
+   macro avg       0.58      0.53      0.54      2000
+weighted avg       0.60      0.61      0.60      2000
+
+Recall for Positive (RP): 0.7645875251509054
+Recall for Negative (RN): 0.31384615384615383
+Recall for Neutral (RU): 0.5183553597650514
+Average Recall: 0.5322630129207035
+
+
+
+
+Average Training Loss: 0.8154804125104261
+Average Training Loss: 0.5884730887153874
+Average Training Loss: 0.3320635659620166
+Average Training Loss: 0.1546584818633678
+Average Training Loss: 0.09604937479446601
+Average Training Loss: 0.06834950411955462
+Average Training Loss: 0.06683956553941876
+Average Training Loss: 0.028252231656907774
+Average Training Loss: 0.058939904960899854
+Average Training Loss: 0.0323075178017936
+Validation Loss: 2.06616348028183
+Test Loss: 1.966654562760913
+Test Accuracy: 0.596
+              precision    recall  f1-score   support
+
+    negative       0.49      0.48      0.49       325
+     neutral       0.47      0.50      0.49       681
+    positive       0.72      0.70      0.71       994
+
+    accuracy                           0.60      2000
+   macro avg       0.56      0.56      0.56      2000
+weighted avg       0.60      0.60      0.60      2000
+
+Recall for Positive (RP): 0.7002012072434608
+Recall for Negative (RN): 0.48
+Recall for Neutral (RU): 0.49926578560939794
+Average Recall: 0.5598223309509529
+
+
+
+
+Average Training Loss: 0.8383821400861974
+Average Training Loss: 0.6025804856979879
+Average Training Loss: 0.35132248531671734
+Average Training Loss: 0.1867918875068426
+Average Training Loss: 0.1177221490279581
+Average Training Loss: 0.08519777768654418
+Average Training Loss: 0.06276578996368565
+Average Training Loss: 0.07253357024142666
+Average Training Loss: 0.056943338073483014
+Average Training Loss: 0.045045166854824036
+Validation Loss: 0.08448684960603714
+Test Loss: 0.08448684960603714
+Test Accuracy: 0.577
+              precision    recall  f1-score   support
+
+    negative       0.40      0.65      0.49       325
+     neutral       0.47      0.42      0.45       681
+    positive       0.76      0.66      0.71       994
+
+    accuracy                           0.58      2000
+   macro avg       0.54      0.58      0.55      2000
+weighted avg       0.60      0.58      0.58      2000
+
+Recall for Positive (RP): 0.6619718309859155
+Recall for Negative (RN): 0.6461538461538462
+Recall for Neutral (RU): 0.4199706314243759
+Average Recall: 0.5760321028547125
+
+
+2015:---------------------------------
+              precision    recall  f1-score   support
+
+    negative       0.59      0.50      0.54       365
+     neutral       0.73      0.52      0.61       987
+    positive       0.63      0.82      0.71      1038
+
+    accuracy                           0.65      2390
+   macro avg       0.65      0.62      0.62      2390
+weighted avg       0.66      0.65      0.64      2390
+
+Recall for Positive (RP): 0.8227360308285164
+Recall for Negative (RN): 0.4986301369863014
+Recall for Neutral (RU): 0.5238095238095238
+Average Recall: 0.6150585638747805
+
+
+2013-------------------------------------
+              precision    recall  f1-score   support
+
+    negative       0.80      0.60      0.69       559
+     neutral       0.69      0.82      0.75      1513
+    positive       0.80      0.72      0.76      1475
+
+    accuracy                           0.75      3547
+   macro avg       0.77      0.72      0.73      3547
+weighted avg       0.76      0.75      0.75      3547
+
+Recall for Positive (RP): 0.7227118644067797
+Recall for Negative (RN): 0.6046511627906976
+Recall for Neutral (RU): 0.8241903502974224
+Average Recall: 0.7171844591649665
