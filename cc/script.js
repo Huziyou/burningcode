@@ -23,8 +23,8 @@ async function generateStory(userInput) {
     return;
   }
 
-  // 结合用户输入和现有故事上下文
-  const prompt = `${storyContext}${storyContext ? " " : ""}${userInput}`;
+  // 使用用户的当前输入作为提示
+  const prompt = userInput;
 
   const data = {
     inputs: prompt,
@@ -53,7 +53,7 @@ async function generateStory(userInput) {
 
     if (generatedText) {
       // 更新故事上下文，并显示在页面上
-      storyContext += generatedText;
+      storyContext = generatedText;
       responseElement.innerText = storyContext;
     }
   } catch (error) {
