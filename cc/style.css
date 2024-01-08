@@ -1,72 +1,66 @@
-body, html {
-    height: 100%;
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #FAF3E0;
-    color: #8B5C2E;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.app-container {
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    width: 80%;
-    max-width: 900px;
-    background: #FFF8E7;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 header {
-    background: #F7E4C6;
-    text-align: center;
+    background-color: #333;
+    color: white;
     padding: 10px 0;
-    border-bottom: 1px solid #E2D4C0;
 }
 
-h1 {
-    margin: 0;
-    font-size: 2em;
-    color: #8B5C2E;
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
 }
 
 main {
-    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
 }
 
-#inputText {
-    width: calc(100% - 40px);
-    height: 150px;
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #E2D4C0;
-    border-radius: 4px;
-    font-size: 1em;
-    background: #FFF8E7;
-    color: #8B5C2E;
-    resize: none;
+.story-generator textarea {
+    width: 60%;
+    height: 100px;
+    margin-top: 20px;
 }
 
-.story-output {
-    border: 1px solid #E2D4C0;
-    background: #FFF8E7;
-    border-radius: 4px;
-    padding: 20px;
-    height: 150px;
-    overflow-y: auto;
-    font-size: 1em;
-    color: #8B5C2E;
+#generate-story {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .app-container {
-        width: 95%;
-        margin: 20px;
-    }
+#story-output {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
 
-    #inputText, .story-output {
-        width: calc(100% - 40px);
-    }
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

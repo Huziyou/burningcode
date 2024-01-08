@@ -1,82 +1,68 @@
-let debounceTimer;
 let storyContext = ""; // 用于存储故事的完整上下文
-let lastUserInput = ""; // 用于存储上一次用户的输入
 const responseElement = document.getElementById('storyOutput');
 const inputElement = document.getElementById('inputText');
 
-// 设置定时器，每5秒自动请求一次GPT-3生成故事
-setInterval(() => {
-    const userInput = inputElement.value;
-
-    // 检查用户是否有新的输入或是否清空了输入
-    if (userInput === lastUserInput) {
-        return; // 如果用户输入没有变化，不进行任何操作
+inputElement.addEventListener('input', () => {
+  // 用户正在输入，清除定时器
+  clearTimeout(debounceTimer);
+  // 设置新的定时器
+  debounceTimer = setTimeout(() => {
+    // 用户停止输入5秒后，调用API生成故事
+    if (inputElement.value.trim() !== lastUserInput) {
+      generateStory(inputElement.value.trim());
+      lastUserInput = inputElement.value.trim(); // 更新上一次用户的输入
     }
-
-    // 如果用户清空了输入，清空故事内容
-    if (!userInput.trim()) {
-        storyContext = "";
-        responseElement.innerText = "";
-    } else {
-        // 用户有新的输入，生成新的故事部分
-        generateStory(userInput);
-    }
-
-    lastUserInput = userInput; // 更新上一次用户的输入
-}, 8000); // 每5秒执行一次
+  }, 5000);
+});
 
 async function generateStory(userInput) {
-    if (!userInput.trim()) {
-        responseElement.innerText = '请输入一些文本来开始故事。';
-        return;
+  if (!userInput) {
+    // 用户清空了输入，相应地清空故事上下文和展示内容
+    storyContext = "";
+    responseElement.innerText = "";
+    return;
+  }
+
+  // 结合用户输入和现有故事上下文
+  const prompt = `${storyContext}${storyContext ? " " : ""}${userInput}`;
+
+  const data = {
+    inputs: prompt,
+    parameters: {
+      max_new_tokens: 150,
+      temperature: 0.7,
+    },
+    options: {
+      use_cache: false,
     }
+  };
 
-    // 结合用户输入和现有故事上下文
-    const fullPrompt = `${storyContext} ${createPrompt(userInput)}`;
-    
-    const data = {
-        model: "gpt-3.5-turbo",
-        prompt: fullPrompt,
-        max_tokens: 50,
-        temperature: 0.7,
-    };
+  try {
+    const response = await fetch("https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1", {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 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' // 替换为你的Hugging Face API密钥
+      },
+      method: "POST",
+      body: JSON.stringify(data)
+    });
 
-    try {
-        const response = await fetch('https://api.chatanywhere.cn/v1/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer sk-zIeVmJwI9LenUlvMqoDyPw39bAjXAgushaxwhVYcGtEiF7Oh' // 用你的API密钥替换
-            },
-            body: JSON.stringify(data)
-        });
+    const result = await response.json();
+    // 请根据Mistral模型的具体响应格式调整下面的代码
+    const generatedText = result[0]?.generated_text || "";
 
-        const responseData = await response.json();
-        // 更新故事上下文
-        storyContext += ` ${responseData.choices[0].text}`;
-        responseElement.innerText = storyContext; // 显示完整故事
-    } catch (error) {
-        console.error('请求GPT-3 API时发生错误:', error);
-        responseElement.innerText = '无法生成故事，请稍后再试。';
+    if (generatedText) {
+      // 更新故事上下文，并显示在页面上
+      storyContext += generatedText;
+      responseElement.innerText = storyContext;
     }
+  } catch (error) {
+    console.error('请求Hugging Face API时发生错误:', error);
+    responseElement.innerText = '无法生成故事，请稍后再试。';
+  }
 }
 
-
-function simulateStoryGeneration(userInput) {
-    if (!userInput.trim()) {
-        responseElement.innerText = '请输入一些文本来开始故事。';
-        return;
-    }
-
-    // 模拟一个固定的测试文本作为响应
-    const testResponse = "这里是GPT-3生成的故事内容...";
-    responseElement.innerText = testResponse;
-}
-
-function createPrompt(userInput) {
-    // 创建引导性提示
-    const storyTheme = "这是一个关于爱情的故事。";
-    const storyStarter = "故事开始是：";
-    const prompt = `${storyTheme} ${storyStarter} ${userInput}`;
-    return prompt;
-}
+// 变量来跟踪上一次用户输入
+let lastUserInput = "";
+// 防抖定时器
+let debounceTimer;

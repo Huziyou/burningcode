@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>共创故事讲述系统</title>
+    <title>Story Generation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h1>Story Generation</h1>
-        </header>
-        <main>
-            <textarea id="inputText" placeholder="Start typing your story..."></textarea>
-            <div id="storyOutput" class="story-output"></div>
-        </main>
-    </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="story-generator">
+            <h1>Story Generator</h1>
+            <textarea id="inputText" placeholder="Type your story prompt here..."></textarea>
+            <button id="generate-story">Generate Story</button>
+            <div id="storyOutput"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Story Generation. All rights reserved.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
